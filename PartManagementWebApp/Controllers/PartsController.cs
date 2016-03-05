@@ -11,6 +11,7 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using PartManagementWebApp.Models;
+using SharpRepository.Repository;
 
 namespace PartManagementWebApp.Controllers
 {
@@ -27,13 +28,19 @@ namespace PartManagementWebApp.Controllers
     */
     public class PartsController : ODataController
     {
+        private readonly IRepository<Part> _partRepository; 
         private ApplicationDbContext db = new ApplicationDbContext();
+
+        public PartsController(IRepository<Part> partRepository)
+        {
+            _partRepository = partRepository;
+        }
 
         // GET: odata/Parts
         [EnableQuery]
         public IQueryable<Part> GetParts()
         {
-            return db.Parts;
+            return _partRepository.AsQueryable();
         }
 
         // GET: odata/Parts(5)
