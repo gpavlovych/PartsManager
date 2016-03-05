@@ -4,19 +4,19 @@
         $scope.cancel = function () { $scope.edit.part = null; };
         $scope.save = function() {
             if ($scope.edit.part.Id) {
-                updateMovie();
+                updatePart();
             } else {
-                createMovie();
+                createPart();
             }
 
         };
-        var updateMovie = function() {
+        var updatePart = function () {
             partService.update($scope.edit.part).success(function() {
                 angular.extend($scope.part, $scope.edit.part);
                 $scope.edit.part = null;
             });
         };
-        var createMovie = function() {
+        var createPart = function () {
             partService.create($scope.edit.part).success(function (part) {
                 $scope.parts.push(part);
                 $scope.edit.part = null;
