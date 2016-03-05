@@ -1,0 +1,13 @@
+﻿<div data-ng-controller="listController">
+    <table class="table table-striped">
+        <tr data-ng-repeat="part in parts">
+            <td>{{part.PartNumber}}</td>
+            <td>
+                <a class="btn btn-default" href="#/details/{{part.Id}}">Details</a>
+                <button class="btn btn-default" data-ng-click="delete(part)">Delete</button>
+            </td>
+        </tr>
+    </table>
+    <button class="btn btn-default" data-ng-click="create()">Create</button>
+    <div data-ng-include="'/Client/View/edit.html'"></div> 
+</div>
